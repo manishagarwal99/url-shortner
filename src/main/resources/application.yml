@@ -1,0 +1,48 @@
+server:
+  servlet:
+    context-path: "/api/url-shortner"
+  error:
+    whitelabel:
+      enabled: false
+logging:
+  level:
+    org.example.urlshortner: info
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: [ 'health', 'info','metrics','caches' ]
+  health:
+    db:
+      enabled: true
+  metrics:
+    cache:
+      enabled: true
+    enable:
+      cache: true
+      caffeine:
+        cache: true
+---
+spring:
+  jackson:
+    deserialization:
+      adjust-dates-to-context-time-zone: false
+  datasource:
+    url: jdbc:postgresql://localhost:5433/urlshortenerdb
+    username: shortdbuser
+    password: shortdbpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      order_inserts: true
+      jdbc:
+        batch_size: 30
+        batch_versioned_data: true
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  web:
+    resources:
+      add-mappings: false

@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres_urlshortener:
+    image: postgres:14.1-alpine
+    container_name: postgres_urlshortener
+    environment:
+      POSTGRES_USER: shortdbuser
+      POSTGRES_PASSWORD: shortdbpass
+      POSTGRES_DB: urlshortenerdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgresql_urlshortener_data:/var/lib/postgresql/data
+
+volumes:
+  postgresql_urlshortener_data:
