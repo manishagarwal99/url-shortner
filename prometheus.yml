@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'my-spring-app'
+    metrics_path: '/api/url-shortner/actuator/prometheus'
+    # The key change is using host.docker.internal to reach your app on the host
+    static_configs:
+      - targets: ['host.docker.internal:8080']

@@ -11,9 +11,16 @@ logging:
 management:
   endpoints:
     web:
-      base-path: /
+      base-path: /actuator
       exposure:
-        include: [ 'health', 'info','metrics','caches' ]
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      access: unrestricted
+    metrics:
+      access: unrestricted
   health:
     db:
       enabled: true
